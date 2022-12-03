@@ -18,7 +18,7 @@ Todas essas funcionalidades citadas acima, podem ser obtidas com o uso do padrã
 ## Código Fonte
 Abaixo, segue o exemplo implementado:
 
-* [Código fonte do exemplo](https://github.com/andrepreis/Resilience4J-Demo/resilience4j-slow-calls/)
+* [Código fonte do exemplo](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/resilience4j-slow-calls)
 
 ## Arquitetura
 
