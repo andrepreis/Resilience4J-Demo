@@ -1,0 +1,20 @@
+server:
+    port: 9091
+    servlet:
+      context-path: /slowcallsimulator    
+
+resilience4j:
+    circuitbreaker:
+        configs:
+            default:
+                slidingWindowSize: 10
+                slidingWindowType: COUNT_BASED
+                minimumNumberOfCalls: 5
+                permittedNumberOfCallsInHalfOpenState: 3
+                automaticTransitionFromOpenToHalfOpenEnabled: true
+                waitDurationInOpenState: 5s
+        instances:
+            greetingCircuitSlow:
+                baseConfig: default
+                slowCallRateThreshold: 50
+                slowCallDurationThreshold: 10ms
