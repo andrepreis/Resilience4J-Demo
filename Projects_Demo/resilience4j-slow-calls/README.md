@@ -17,10 +17,12 @@ Utilizando a biblioteca Resilience4j, essa funcionalidade pode ser facilmente ob
 
 Todas essas funcionalidades citadas acima, podem ser obtidas com o uso do padrão *Circuit Breaker*.
 
-##Código Fonte ##
+##Código Fonte##
+
 [Código fonte do exemplo](https://github.com/andrepreis/Resilience4J-Demo)
 
-## Arquitetura ##
+##Arquitetura##
+
 ![Arquitetura do exemplo](./img/CB-RF4-SC.png)
 
 A arquitetura acima descreve o modelo da aplicação criada:
@@ -30,6 +32,8 @@ A arquitetura acima descreve o modelo da aplicação criada:
 3. Sempre que Service2 responder de forma adequada, Service1 retorna a resposta para o solicitante e atualiza o cache da aplicação.
 4. Sempre que ocorrer lentidão em Service2, o circuito sera aberto e Service1 retornará o valor mais atual existente no cache.
 
-## Executando o Exemplo ##
 
-## Detalhes do Código##
+##Executando o Exemplo##
+
+
+##Detalhes do Código##
