@@ -1,4 +1,4 @@
-# Criando APIs REST resilientes utilizando Springboot e Resilience4J
+# Criando APIs REST resilientes utilizando Spring Boot e Resilience4J
 
 O que acontece quando a comunicação entre suas REST APIs apresenta falhas?
 
