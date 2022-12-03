@@ -1,4 +1,4 @@
-#Prevenindo lentidão em cascata na chamada de APIs REST utilizando o padrão Circuit Breaker com a biblioteca Resilience4J#
+#Prevenindo lentidão em cascata na chamada de APIs REST utilizando o padrão Circuit Breaker com a biblioteca Resilience4J
 
 Neste demo, aprenderemos como evitar lentidão em cascata entre APIs REST usando o módulo  Circuit Breaker do Resilience4j .
 Imagine que temos dois serviços: *Service1* e *Service2* .  *Service1* depende de execução e resposta de *Service2* para prosseguir com seu processamento.
@@ -7,7 +7,7 @@ Imagine que temos dois serviços: *Service1* e *Service2* .  *Service1* depe
 Por algum motivo, *Service2* está apresentando lentidão. Em vez de chamar repetidamente por *Service2*, *Service1* deve parar momentaneamente de chama-lo até que o *Service2* esteja completamente ou parcialmente recuperado.
 Utilizando a biblioteca Resilience4j, essa funcionalidade pode ser facilmente obtida com o uso da anotação @CircuitBreaker.
 
-##Visão geral##
+##Visão geral
 
 * Os usuários fazem chamadas para obter uma mensagem  de Service1.
 * *Service1* chama *Service2* para buscar a mensagem.
@@ -17,11 +17,11 @@ Utilizando a biblioteca Resilience4j, essa funcionalidade pode ser facilmente ob
 
 Todas essas funcionalidades citadas acima, podem ser obtidas com o uso do padrão *Circuit Breaker*.
 
-##Código Fonte##
+##Código Fonte
 
 [Código fonte do exemplo](https://github.com/andrepreis/Resilience4J-Demo)
 
-##Arquitetura##
+##Arquitetura
 
 ![Arquitetura do exemplo](./img/CB-RF4-SC.png)
 
@@ -33,7 +33,7 @@ A arquitetura acima descreve o modelo da aplicação criada:
 4. Sempre que ocorrer lentidão em Service2, o circuito sera aberto e Service1 retornará o valor mais atual existente no cache.
 
 
-##Executando o Exemplo##
+##Executando o Exemplo
 
 
-##Detalhes do Código##
+##Detalhes do Código
