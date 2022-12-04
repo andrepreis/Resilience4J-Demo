@@ -1,7 +1,7 @@
 server:
     port: 9091
     servlet:
-      context-path: /slowcallsimulator    
+      context-path: /rfjslowcalls    
 
 resilience4j:
     circuitbreaker:

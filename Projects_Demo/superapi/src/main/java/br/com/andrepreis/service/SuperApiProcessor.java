@@ -76,7 +76,9 @@ public class SuperApiProcessor {
         
     }
 
-	
+	public String geraMensagemQualquer(String nome) throws Exception {
+		return "Ola " + nome + "!" + " Sua requisição por processada com sucesso!";
+	}
 	
 	
 	/**
@@ -112,6 +114,8 @@ public class SuperApiProcessor {
 		return false;		
 		
 	}
+	
+	
 
 
 }

@@ -1,7 +1,7 @@
 server:
     port: 9092
     servlet:
-      context-path: /circuitbreaker    
+      context-path: /rfjerrorcalls    
 
 resilience4j:
     circuitbreaker:

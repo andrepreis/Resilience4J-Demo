@@ -1,0 +1,14 @@
+server:
+    port: 9093
+    servlet:
+      context-path: /bulkheadcalls
+      
+resilience4j:
+    bulkhead:
+        configs:
+            default:
+                maxConcurrentCalls: 5
+                maxWaitDuration: 0
+        instances:
+            greetingBulkhead:
+                baseConfig: default    

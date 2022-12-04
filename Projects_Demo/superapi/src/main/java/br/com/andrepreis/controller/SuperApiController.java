@@ -79,5 +79,25 @@ public class SuperApiController {
 		return new ResponseEntity<String>(returnMessage,HttpStatus.OK);		
 	}
 	
+	
+	@RequestMapping(value = "/getBulkheadCalls", method = RequestMethod.GET)
+	@ResponseBody	
+	public ResponseEntity<String> getBulkheadCalls(@RequestParam(value = "name", defaultValue = "getBulkheadCalls") String name)throws Exception{
+		
+		String returnMessage="Sucess";
+		long i = random.nextInt(100000);
+		
+		try {
+		
+			returnMessage = service.geraMensagemQualquer(Long.valueOf(i).toString() + " --> " + name);
+		
+		}catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			returnMessage="Error";
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+		return new ResponseEntity<String>(returnMessage,HttpStatus.OK);		
+	}
 
 }
