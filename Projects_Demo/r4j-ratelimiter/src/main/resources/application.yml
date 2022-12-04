@@ -1,0 +1,15 @@
+server:
+    port: 9094
+    servlet:
+      context-path: /ratelimitercalls
+      
+resilience4j:
+    ratelimiter:
+        configs:
+            default:
+                limitForPeriod: 5
+                limitRefreshPeriod: 1s
+                timeoutDuration: 0
+        instances:
+            greetingRateLimit:
+                baseConfig: default
