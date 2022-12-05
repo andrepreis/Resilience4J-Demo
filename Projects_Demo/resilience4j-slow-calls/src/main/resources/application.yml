@@ -3,18 +3,21 @@ server:
     servlet:
       context-path: /rfjslowcalls    
 
+
 resilience4j:
-    circuitbreaker:
+    timelimiter:
         configs:
             default:
-                slidingWindowSize: 10
-                slidingWindowType: COUNT_BASED
-                minimumNumberOfCalls: 5
-                permittedNumberOfCallsInHalfOpenState: 3
-                automaticTransitionFromOpenToHalfOpenEnabled: true
-                waitDurationInOpenState: 5s
+                timeoutDuration: 1000
+                cancelRunningFuture: true
         instances:
-            greetingCircuitSlow:
+            timelimiterSlow:
                 baseConfig: default
-                slowCallRateThreshold: 50
-                slowCallDurationThreshold: 10ms
+    bulkhead:
+        configs:
+            default:
+                maxConcurrentCalls: 5
+                maxWaitDuration: 0
+        instances:
+            greetingBulkhead:
+                baseConfig: default
