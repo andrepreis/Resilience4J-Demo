@@ -7,9 +7,9 @@ resilience4j:
     ratelimiter:
         configs:
             default:
-                limitForPeriod: 5
+                limitForPeriod: 2
                 limitRefreshPeriod: 1s
                 timeoutDuration: 0
         instances:
-            greetingRateLimit:
+            errorRateLimiterMonitor:
                 baseConfig: default

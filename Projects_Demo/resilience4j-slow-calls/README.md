@@ -9,7 +9,7 @@ Utilizando a biblioteca Resilience4j, essa funcionalidade pode ser facilmente ob
 
 * Os usuários fazem chamadas para obter uma mensagem  de Service1.
 * *Service1* chama *Service2* para buscar a mensagem.
-* O tempo de resposta normal de *Service2* é de ~20 milissegundos. Devido a algum problema aleatório, 50% das chamadas para *Service2* levam mais de 4 segundos.
+* O tempo de resposta normal de *Service2* é de ~20 milissegundos. Devido a algum problema aleatório, 50% das chamadas para *Service2* levam mais de 3 segundos.
 * Esse comportamento de lentidão de *Service2* não deve afetar *Service1* .
 * Sempre que  *Service1* perceber que 50% das chamadas estão demorando mais de 20 milissegundos, ele não chamará *Service2* e retornará a resposta armazenada, por exemplo, em um cahce..
 

@@ -42,6 +42,7 @@ public class SuperApiController {
 		
 		try {		
 			
+			//returnMessage = service.getSimulaDelay(Long.valueOf(i).toString() + " --> " + name);
 			returnMessage = service.geraAtrasoSimulado(Long.valueOf(i).toString() + " --> " + name);
 			
 		}catch (Exception e) {

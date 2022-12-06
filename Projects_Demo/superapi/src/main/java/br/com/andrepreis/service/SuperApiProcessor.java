@@ -25,7 +25,7 @@ public class SuperApiProcessor {
 	 * @param sParameter
 	 * @return
 	 */
-	public String getSuperApiValue(String sParameter) throws Exception {
+	public String getSimulaDelay(String sParameter) throws Exception {
 		
 		//Verifica se ja é hora de começar com os problemas
 		if(ControlVars.sucessRequestsNumber > ControlVars.requestsNumberBeforeError) {
@@ -76,7 +76,7 @@ public class SuperApiProcessor {
         
     }
 
-	public String geraMensagemQualquer(String nome) throws Exception {
+	public String geraMensagemQualquer(String nome) throws Exception {		
 		return "Ola " + nome + "!" + " Sua requisição por processada com sucesso!";
 	}
 	

@@ -7,14 +7,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 
+@RestController
+@CrossOrigin
+@RequestMapping("/v1")
 public class R4jRateLimiter {
+	
 	private String cache = null;
+	
 	public static final Logger logger = LoggerFactory.getLogger(R4jRateLimiter.class);
 	public static String SUPERAPI = "http://localhost:9090/superapi/v1/getRateLimiterCalls?name=";
 
@@ -22,30 +30,33 @@ public class R4jRateLimiter {
     RestTemplate restTemplate;
 
     @GetMapping("/getRateLimiter")
-    @CircuitBreaker(name = "errorRateLimiterMonitor", fallbackMethod = "fallBack")
-    public ResponseEntity<String> callApi(@RequestParam(value = "name", defaultValue = "rateLimiterCallsMonitor") String name) {
-        
-    	ResponseEntity<String> responseEntity = restTemplate.getForEntity(SUPERAPI + name, String.class);
-        
-        //update cache
-    	logger.info("Processamento executado com sucesso : "+responseEntity.getBody().toString());
-        cache = responseEntity.getBody().toString();
-        return responseEntity;
+    @RateLimiter(name = "errorRateLimiterMonitor", fallbackMethod = "fallBack")
+    public ResponseEntity<String> greeting(@RequestParam(value = "name", defaultValue = "errorRateLimiterMonitor") String name) {
+    	
+    	//Chama API  qualquer
+    	logger.info("Camando API Externa");
+    	
+    	return ResponseEntity.ok().body("Hello World: " + name);
     }
 
 
-
-    public ResponseEntity<String> fallBack(String name, io.github.resilience4j.bulkhead.BulkheadFullException ex) {
+    /**
+     * 
+     * @param name
+     * @param ex
+     * @return
+     */
+    public ResponseEntity<String> fallBack(String name, io.github.resilience4j.ratelimiter.RequestNotPermitted ex) {
         
-    	logger.info("Limite atingido! Nenhuma chamada sera atendida");
+    	logger.info("Limite de conexões atingido");
+    	
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Retry-After", "1"); //Header de retorno
+        responseHeaders.set("Retry-After", "1"); //retry after one second
 
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-                .headers(responseHeaders) //Adicionano parametro no header indicando para tentar novamente apos um certo tempo
-                .body("Too many concurrent requests- Please try after some time");
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .headers(responseHeaders) //send retry header
+                .body("Too many request - No further calls are accepted");
     }
-    
 
     @Bean
     public RestTemplate restTemplate() {

@@ -10,5 +10,5 @@ resilience4j:
                 maxConcurrentCalls: 5
                 maxWaitDuration: 0
         instances:
-            greetingBulkhead:
+            bulkheadCallsMonitor:
                 baseConfig: default    

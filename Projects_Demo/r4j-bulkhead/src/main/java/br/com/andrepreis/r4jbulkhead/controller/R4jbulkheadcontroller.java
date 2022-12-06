@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 
 @RestController
 @CrossOrigin
@@ -30,7 +30,7 @@ public class R4jbulkheadcontroller {
     RestTemplate restTemplate;
 
     @GetMapping("/getBulkheadCalls")
-    @CircuitBreaker(name = "errorBulkheadCallsMonitor", fallbackMethod = "fallBack")
+    @Bulkhead(name = "bulkheadCallsMonitor", fallbackMethod = "fallBack")
     public ResponseEntity<String> callApi(@RequestParam(value = "name", defaultValue = "bulkheadCallsMonitor") String name) {
         
     	ResponseEntity<String> responseEntity = restTemplate.getForEntity(SUPERAPI + name, String.class);
