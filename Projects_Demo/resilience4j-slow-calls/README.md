@@ -57,7 +57,7 @@ A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicaç�
 	
 	* http://localhost:9091/superapi/v1/getSlowCalls : Endpoint que encapsula a chamada para a API acima dentro de um circuit breaker.
 	
-6. Para visualizarmos melhor o atuação do circuit breaker quando a API monitorada começa a apresentar lentidão, utilizaremos o JMeter para simular várias chamadas simultâneas a *Service1* e este, por sua vez, faz chamadas para *Service2*. *Service2* por um motivo qualquer começa a apresentar lentidão no processamento e afeta diretamente "Service1". Você pode baixar o scrip JMeter clicando no link : [Resilience4J.jmx](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/Resilience4J.jmx)
+6. Para visualizarmos melhor o atuação do circuit breaker quando a API monitorada começa a apresentar lentidão, utilizaremos o JMeter para simular várias chamadas simultâneas a *Service1* e este, por sua vez, faz chamadas para *Service2*. *Service2* por um motivo qualquer começa a apresentar lentidão no processamento e afeta diretamente "Service1". Você pode baixar o scrip JMeter clicando no link : [Resilience4J.jmx](/../../Resilience4J.jmx)
 
 7. Com o sript de testes devidamente importado no Jmeter, vamos verificar dois cenários:
 
