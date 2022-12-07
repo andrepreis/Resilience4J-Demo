@@ -57,14 +57,20 @@ A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicaç�
 	
 	* http://localhost:9091/superapi/v1/getSlowCalls : Endpoint que encapsula a chamada para a API acima dentro de um circuit breaker.
 	
-6. Para visualizarmos melhor o atuação do circuit breaker quando a API monitorada começa a apresentar lentidão, utilizaremos o JMeter para simular várias chamadas simultâneas a *Service1* e este, por sua vez, faz chamadas para *Service2*. *Service2* por um motivo qualquer começa a apresentar lentidão no processamento e afeta diretamente "Service1". Você pode baixar o scrip JMeter clicando no link : [Resilience4J.jmx](/../../Resilience4J.jmx)
+6. Para visualizarmos melhor o atuação do circuit breaker quando a API monitorada começa a apresentar lentidão, utilizaremos o JMeter para simular várias chamadas simultâneas a *Service1* e este, por sua vez, faz chamadas para *Service2*. *Service2* por um motivo qualquer começa a apresentar lentidão no processamento e afeta diretamente "Service1". Você pode baixar o scrip JMeter clicando no link : [Resilience4J.jmx](../../Resilience4J.jmx)
 
 7. Com o sript de testes devidamente importado no Jmeter, vamos verificar dois cenários:
 
 	1. Iremos chamar  diretamente *Service2* e observar o comportamento quando ocorrem lentidão durante sua chamada;
+	![Chamada direta sem circuit breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)		
+	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 1278ms por requisição.
+	
 	2. Iremos chamar *Service1* e este por sua vez, fara chamadas para para *Service2*.
+	![Chamada direta com Circuit Breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)
+	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 100ms por requisição.
 	
 8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
+Note que quando encapsulamos as chamadas para *Service2* dentro do circuit breaker, o tempo médio de resposta de *Service2* foi significativamente mais rápido quando comparado com a chamada direta sem o Circuit Breaker. Porque isso acontece?
 
 
 ## Detalhes do Código
