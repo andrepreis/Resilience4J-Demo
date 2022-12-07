@@ -24,7 +24,7 @@ Abaixo, segue o exemplo implementado:
 
 ![Arquitetura do exemplo](./img/CB-RF4-SC.png)
 
-A arquitetura acima descreve o modelo da aplicação criada:
+A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicação onde iremos simular lentião na chamada de uma API externa:
 
 1. Varias threads são disparadas via JMeter ou navegador chamando Service1.
 2. Service1 esta encapsulado por um objeto Circuit Breaker. Este circuit breaker monitora todas as chamadas para Service2 originadas a partir de Service1.
@@ -34,5 +34,37 @@ A arquitetura acima descreve o modelo da aplicação criada:
 
 ## Executando o Exemplo
 
-...
+1. Devemos dar um build na API que irá simular os problemas. Acesse o diretório "Resilience4J-Demo/Projects_Demo/superapi":
+
+	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi$ *mvn clean install*
+
+2. Dentro do diretório "Resilience4J-Demo/Projects_Demo/superapi/target" inicie a aplicação "superapi-1.0-SNAPSHOT.jar":
+	
+	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi/target$ *java -jar superapi-1.0-SNAPSHOT.jar* 
+
+
+3. Dentro do diretório "Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls" precisamos dar um "build" no projeto que encapsula as chamadas a API monitorada pelo Circuit Breaker:
+
+	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls$ *mvn clean install*
+
+4. Dentro do diretório "Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls/targe" inicie a aplicação "r4j-slow-calls-0.0.1-SNAPSHOT.jar" :
+	
+	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls/target$ java -jar r4j-slow-calls-0.0.1-SNAPSHOT.jar 
+	
+5. Com as duas aplicações sendo executadas, teremos dois endpoints:
+
+	* http://localhost:9090/superapi/v1/getSlowCalls : Endpoint da APIs que irá gerar lentidão aleatória e será utilizada para testarmos a implementação de circuit breaker
+	
+	* http://localhost:9091/superapi/v1/getSlowCalls : Endpoint que encapsula a chamada para a API acima dentro de um circuit breaker.
+	
+6. Para visualizarmos melhor o atuação do circuit breaker quando a API monitorada começa a apresentar lentidão, utilizaremos o JMeter para simular várias chamadas simultâneas a *Service1* e este, por sua vez, faz chamadas para *Service2*. *Service2* por um motivo qualquer começa a apresentar lentidão no processamento e afeta diretamente "Service1". Você pode baixar o scrip JMeter clicando no link : [Resilience4J.jmx](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/Resilience4J.jmx)
+
+7. Com o sript de testes devidamente importado no Jmeter, vamos verificar dois cenários:
+
+	1. Iremos chamar  diretamente *Service2* e observar o comportamento quando ocorrem lentidão durante sua chamada;
+	2. Iremos chamar *Service1* e este por sua vez, fara chamadas para para *Service2*.
+	
+8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
+
+
 ## Detalhes do Código

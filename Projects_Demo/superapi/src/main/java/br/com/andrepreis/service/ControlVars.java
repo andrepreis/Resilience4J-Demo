@@ -27,8 +27,8 @@ public class ControlVars {
 	static final long errorTime = 25000;
 	
 	//Menságem de retorno da API
-	static final String returnSucessMsg = "Super API return SUCESS!";
+	static final String returnSucessMsg = "SUCESS!";
 	
-	static final String returnErrorMsg = "Super API Error!";
+	static final String returnErrorMsg = "ERROR!";
 
 }
