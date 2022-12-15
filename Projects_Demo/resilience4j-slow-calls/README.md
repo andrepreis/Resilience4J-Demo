@@ -100,7 +100,7 @@ Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
 
 ## Detalhes do Código
 
-Para encapsular uma chamada a um serviço externo, basta colocar a anotação *@CircuitBreker* no método que faz a chamada para o serviço externo:
+Para encapsular a chamada para um serviço externo, basta colocar a anotação *@CircuitBreaker* no método que faz a chamada para o serviço externo:
 
 > @CircuitBreaker(name = "circuitSlowMonitor", fallbackMethod = "fallBack")
 
