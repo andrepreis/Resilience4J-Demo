@@ -113,7 +113,6 @@ Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
 
 > resilience4j:
->
 >     circuitbreaker:
 >
 >         configs:
