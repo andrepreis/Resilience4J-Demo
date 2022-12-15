@@ -89,7 +89,8 @@ Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 q
 	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 100ms por requisição.
 	
 8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
-Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, o tempo médio de resposta de *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. Porque isso acontece?
+Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, o tempo médio de resposta de *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. 
+Porque isso acontece?
 Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
 	* Chamadas com duração superior a 50ms são consideradas *chamadas lentas*.
 	* Quando 50% das chamadas tem tempo de resposta superior a 50ms, o *circuit breaker* endende que *Service2*  esta passando por problemas. 
