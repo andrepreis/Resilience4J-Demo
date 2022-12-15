@@ -36,11 +36,12 @@ A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicaç�
 
 Para executar nosso exemplo, você precisará executar montar e executar as seguintes aplicações :
 	
-	* superapi : Aplicação que contem os serviços fake que simulam servições externos que tem sua chamada encapsulada dentro do circuit breaker.
-	* resilience4j-slow-calls : Aplicação que implementa um circuit breaker que trata lentidão na chamada à um serviço externo.
+	*superapi : Aplicação que contem os serviços fake que simulam servições externos que tem sua chamada encapsulada dentro do circuit breaker.
+	*resilience4j-slow-calls : Aplicação que implementa um circuit breaker que trata lentidão na chamada à um serviço externo.
 
 Para execução dos exemplos você pode utilizar sua IDE favorita(Eclipse, VSCode, IntelliJ), ou compilar e executar as aplicações via linha de comando.
 No meu caso em específico, utilizo a  IDE Eclipse juntamente com o plugin do SpringBoot, onde todas as aplicações springboot são detectadas e consigo inicia-las de dentro da IDE.
+
 ![Eclipse + Plugin SpringBoot](./img/TelaEclipse.png)
 
 Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 que estão definidos a seguir:
