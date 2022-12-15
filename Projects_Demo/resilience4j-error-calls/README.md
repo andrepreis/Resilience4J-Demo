@@ -121,22 +121,37 @@ O parâmetro *fallbackMethod* se refere ao método que será chamado quando o *c
 Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
 > resilience4j:
+>
 >    circuitbreaker:
+>
 >        configs:
+>
 >           default:
+>
 >                slidingWindowSize: 10
+>
 >                slidingWindowType: COUNT_BASED
+>
 >                minimumNumberOfCalls: 5
+>
 >                permittedNumberOfCallsInHalfOpenState: 3
+>
 >                automaticTransitionFromOpenToHalfOpenEnabled: true
+>
 >                waitDurationInOpenState: 2s
+>
 >        instances:
+>
 >            errorCallsMonitor:
+>
 >                baseConfig: default
+>
 >                failureRateThreshold: 50
+>
 >                recordExceptions:
+>
 >                    - org.springframework.web.client.HttpServerErrorException
-
+>
 
 Confira a abaixo uma breve descrição dos principais parâmetros utilizados na configuração de nosso *circuit breaker*.
 
