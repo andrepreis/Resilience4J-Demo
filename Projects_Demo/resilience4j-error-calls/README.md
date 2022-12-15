@@ -116,40 +116,26 @@ O parâmetro *name* se refere ao nome do *circuit breaker*.
 O parâmetro *fallbackMethod* se refere ao método que será chamado quando o *circuit breaker* estiver com status aberto. 
 
 
-[Configuração do circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-slow-calls/src/main/resources/application.yml)
+[Configuração do circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-error-calls/src/main/resources/application.yml)
 
 Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
->
 > resilience4j:
->
->     circuitbreaker:
->
->         configs:
->
->             default:
->
->                 slidingWindowSize: 10
->
->                 slidingWindowType: COUNT_BASED
->
->                 minimumNumberOfCalls: 5
->
->                 permittedNumberOfCallsInHalfOpenState: 3
->
->                 automaticTransitionFromOpenToHalfOpenEnabled: true
->
->                 waitDurationInOpenState: 5s
->
->         instances:
->
->             circuitSlowMonitor:
->
->                 baseConfig: default
->
->                 slowCallRateThreshold: 50
->
->                 slowCallDurationThreshold: 10ms
+>    circuitbreaker:
+>        configs:
+>           default:
+>                slidingWindowSize: 10
+>                slidingWindowType: COUNT_BASED
+>                minimumNumberOfCalls: 5
+>                permittedNumberOfCallsInHalfOpenState: 3
+>                automaticTransitionFromOpenToHalfOpenEnabled: true
+>                waitDurationInOpenState: 2s
+>        instances:
+>            errorCallsMonitor:
+>                baseConfig: default
+>                failureRateThreshold: 50
+>                recordExceptions:
+>                    - org.springframework.web.client.HttpServerErrorException
 
 
 Confira a abaixo uma breve descrição dos principais parâmetros utilizados na configuração de nosso *circuit breaker*.
