@@ -107,9 +107,9 @@ Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
 
 Para encapsular a chamada para um serviço externo, basta colocar a anotação *@CircuitBreaker* no método que faz a chamada para o serviço externo:
 
-[Classe que implementa o circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-slow-calls/src/main/java/br/com/andrepreis/resilience4jslowcalls/controller/CircuitBrakerController.java)
+[Classe que implementa o circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-error-calls/src/main/java/br/com/andrepreis/resilience4jerrorcalls/controller/CircuitBrakerController.java)
 
-> @CircuitBreaker(name = "circuitSlowMonitor", fallbackMethod = "fallBack")
+> @CircuitBreaker(name = "errorCallsMonitor", fallbackMethod = "fallBack")
 
 O parâmetro *name* se refere ao nome do *circuit breaker*.
 
@@ -156,13 +156,21 @@ Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 Confira a abaixo uma breve descrição dos principais parâmetros utilizados na configuração de nosso *circuit breaker*.
 
 * *minimumNumberOfCalls*: Configura o número mínimo de chamadas necessárias (por período da janela deslizante) antes que o *circuit breaker* possa calcular a taxa de erro. Por exemplo, se esta propriedade for 10, pelo menos 10 chamadas deverão ser registradas antes que a taxa de falha possa ser calculada. Se apenas 9 chamadas tiverem sido gravadas, o *circuit breaker* não fará a transição para ABERTO, mesmo que todas as 9 tenham falhado.
+
 * *slidingWindowSize*: Configura a quantidade de últimos registros armazenados no estado FECHADO para realizar o cálculo de taxa de falha. Por exemplo, *Service1* já executou 50 chamadas para *Service2* no estado FECHADO, se esta propriedade estiver com valor 10, serão consideradas as 10 últimas interações para calcular a taxa de falha (failureRateThreshold). 
+
 * *failureRateThreshold*: P a porcentagem de limite de erros necessário para o Circuit breaker alterar seu estado para ABERTO, neste caso, está em 50%, ou seja, de um total de 10 tentativas, se 5 falharem o algoritmo irá parar de chamar o *Service2* e retornará uma mensagem tratada ou executará o retorno personalizado mencionado anteriormente.
+
 * *waitDurationInOpenState*: O tempo que deve esperar antes de fazer a transição de ABERTO para ENTREABERTO.
+
 * *permittedNumberOfCallsInHalfOpenState*: Configura o número de chamadas necessárias para calcular a taxa de falha novamente quando o Circuit Breaker estiver com estado ENTREABERTO.
+
 * *eventConsumerBufferSize*: Define a quantidade de mensagens que irão aparecer nos eventos do *circuit breaker* dentro do *Actuator*.
+
 * *recordExceptions*: Uma lista de exceções que serão contabilizadas como falha. Qualquer exceção correspondente ou herdada de uma das listas conta como uma falha, a menos que seja explicitamente ignorada via ignoreExceptions. Por padrão, todas as exceções são registradas como falhas.
+
 * *slowCallRateThreshold*: O *circuit breaker* considera uma chamada lenta quando n% das chamadas tem duração maior que *slowCallDurationThreshold*.
+
 * *slowCallDurationThreshold*: Configura o limite de duração acima do qual as chamadas são consideradas lentas.
 
 
