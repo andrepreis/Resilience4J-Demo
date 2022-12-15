@@ -117,6 +117,7 @@ O parâmetro *fallbackMethod* se refere ao método que será chamado quando o *c
 
 
 [Configuração do circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-slow-calls/src/main/resources/application.yml)
+
 Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
 >
