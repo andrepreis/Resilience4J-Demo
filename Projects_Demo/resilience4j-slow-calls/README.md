@@ -113,20 +113,35 @@ Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
 
 > resilience4j:
+>
 >     circuitbreaker:
+>
 >         configs:
+>
 >             default:
+>
 >                 slidingWindowSize: 10
+>
 >                 slidingWindowType: COUNT_BASED
+>
 >                 minimumNumberOfCalls: 5
+>
 >                 permittedNumberOfCallsInHalfOpenState: 3
+>
 >                 automaticTransitionFromOpenToHalfOpenEnabled: true
+>
 >                 waitDurationInOpenState: 5s
+>
 >         instances:
+>
 >             circuitSlowMonitor:
+>
 >                 baseConfig: default
+>
 >                 slowCallRateThreshold: 50
+>
 >                 slowCallDurationThreshold: 10ms
+
 
 Confira a abaixo uma breve descrição dos principais parâmetros utilizados na configuração de nosso *circuit breaker*.
 
