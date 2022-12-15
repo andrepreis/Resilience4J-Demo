@@ -26,7 +26,7 @@ Abaixo, segue o exemplo implementado:
 
 A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicação onde iremos simular lentião na chamada de uma API externa:
 
-1. Varias threads são disparadas via JMeter ou navegador chamando Service1.
+1. Varias threads são disparadas via JMesuperapiter ou navegador chamando Service1.
 2. Service1 esta encapsulado por um objeto Circuit Breaker. Este circuit breaker monitora todas as chamadas para Service2 originadas a partir de Service1.
 3. Sempre que Service2 responder de forma adequada, Service1 retorna a resposta para o solicitante e atualiza o cache da aplicação.
 4. Sempre que ocorrer lentidão em Service2, o circuito sera aberto e Service1 retornará o valor mais atual existente no cache.
@@ -34,22 +34,34 @@ A arquitetura acima demonstra um modelo  básico de arquitetura de uma aplicaç�
 
 ## Executando o Exemplo
 
+Para executar nosso exemplo, você precisará executar montar e executar as seguintes aplicações :
+	
+	* superapi : Aplicação que contem os serviços fake que simulam servições externos que tem sua chamada encapsulada dentro do circuit breaker.
+	* resilience4j-slow-calls : Aplicação que implementa um circuit breaker que trata lentidão na chamada à um serviço externo.
+
+Para execução dos exemplos você pode utilizar sua IDE favorita(Eclipse, VSCode, IntelliJ), ou compilar e executar as aplicações via linha de comando.
+No meu caso em específico, utilizo a  IDE Eclipse juntamente com o plugin do SpringBoot, onde todas as aplicações springboot são detectadas e consigo inicia-las de dentro da IDE.
+![Eclipse + Plugin SpringBoot](./img/TelaEclipse.png)
+
+Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 que estão definidos a seguir:
+
+
 1. Devemos dar um build na API que irá simular os problemas. Acesse o diretório "Resilience4J-Demo/Projects_Demo/superapi":
 
-	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi$ *mvn clean install*
+	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi$ **mvn clean install**
 
 2. Dentro do diretório "Resilience4J-Demo/Projects_Demo/superapi/target" inicie a aplicação "superapi-1.0-SNAPSHOT.jar":
 	
-	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi/target$ *java -jar superapi-1.0-SNAPSHOT.jar* 
+	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/superapi/target$ **java -jar superapi-1.0-SNAPSHOT.jar** 
 
 
 3. Dentro do diretório "Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls" precisamos dar um "build" no projeto que encapsula as chamadas a API monitorada pelo Circuit Breaker:
 
-	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls$ *mvn clean install*
+	 > xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls$ **mvn clean install**
 
 4. Dentro do diretório "Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls/targe" inicie a aplicação "r4j-slow-calls-0.0.1-SNAPSHOT.jar" :
 	
-	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls/target$ java -jar r4j-slow-calls-0.0.1-SNAPSHOT.jar 
+	>	xxxxxxx@aaa-aaaa:~/eclipse-workspace/Resilience4J-Demo/Projects_Demo/resilience4j-slow-calls/target$ **java -jar r4j-slow-calls-0.0.1-SNAPSHOT.jar**
 	
 5. Com as duas aplicações sendo executadas, teremos dois endpoints:
 
