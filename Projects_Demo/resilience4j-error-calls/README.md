@@ -86,11 +86,11 @@ Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 q
 7. Com o sript de testes devidamente importado no Jmeter, vamos verificar dois cenários:
 
 	1. Iremos chamar  diretamente *Service2* e observar o comportamento quando muitos erros  começarem a ocorrer durante sua chamada;
-	![Chamada direta sem circuit breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)		
+	![Chamada direta sem circuit breaker](./img/ErrorCalls_Direta.png)		
 	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 1278ms por requisição.
 	
 	2. Iremos chamar *Service1* e este por sua vez, fara chamadas para *Service2*. Detalhe, a chamada para *Service2* esta encapsulada dentro por um *circuit breaker*.
-	![Chamada direta com Circuit Breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)
+	![Chamada direta com Circuit Breaker](./img/ErrorCalls_CB.png)
 	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 100ms por requisição.
 	
 8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
