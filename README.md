@@ -6,7 +6,7 @@ Existe um padrão chamado Circuit Breaker que ajuda a mitigar esses problemas. N
 
 * [API fake que simula um suposto serviço externo que passa por problemas](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/superapi)
 * [Prevenindo lentidão em cascata na chamada de APIs REST utilizando o padrão Circuit Breaker com a biblioteca Resilience4J.](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/resilience4j-slow-calls)
-* [Circuit Breaker aplicado no tratamento de erros que ocorrem na chamada de serviços externos.](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/resilience4j-error-calls)
+* [Prevenindo propagação de erros em cascata na chamada de APIs REST utilizando o padrão Circuit Breaker com a biblioteca Resilience4J.](https://github.com/andrepreis/Resilience4J-Demo/tree/main/Projects_Demo/resilience4j-error-calls)
 
 # Sugestões de leitura
 
