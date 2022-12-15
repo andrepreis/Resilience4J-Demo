@@ -116,7 +116,7 @@ O parâmetro *name* se refere ao nome do *circuit breaker*.
 O parâmetro *fallbackMethod* se refere ao método que será chamado quando o *circuit breaker* estiver com status aberto. 
 
 
-
+[Configuração do circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-slow-calls/src/main/resources/application.yml)
 Nosso *circuit breaker* é configurado no arquivo *application.yml*, confira:
 
 >
