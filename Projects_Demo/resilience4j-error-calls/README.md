@@ -87,20 +87,17 @@ Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 q
 
 	1. Iremos chamar  diretamente *Service2* e observar o comportamento quando muitos erros  começarem a ocorrer durante sua chamada;
 	![Chamada direta sem circuit breaker](./img/ErrorCalls_Direta.png)		
-	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 1278ms por requisição.
+	Disparamos 2 ciclos de 40 requisições dentro de um intervalo de 2 segundos e obtivemos um número médio de erros ~44%.
 	
 	2. Iremos chamar *Service1* e este por sua vez, fara chamadas para *Service2*. Detalhe, a chamada para *Service2* esta encapsulada dentro por um *circuit breaker*.
 	![Chamada direta com Circuit Breaker](./img/ErrorCalls_CB.png)
-	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 100ms por requisição.
+	Disparamos 2 ciclos de 40 requisições dentro de um intervalo de 2 segundos e obtivemos um número médio de erros ~0%.
 	
 8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
-Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, o tempo médio de resposta de *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. 
+Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, obviamente o número de erros de  *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. 
 Porque isso acontece?
 Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
-	* Chamadas com duração superior a 50ms são consideradas *chamadas lentas*.
-	* Quando 50% das chamadas tem tempo de resposta superior a 50ms, o *circuit breaker* endende que *Service2*  esta passando por problemas. 
-	  Com este indicativo, o *circuit breaker* será aberto, e *service1* retornará o valor mais atual do cache não efetuando a chamada para *service2*. 
-	  Assim, *Service1* não precisa esperar a resposta de *Service2* e retorna o valor diretamente o cache. 
+	* Sempre que o serviço monitorado apresentar um número de erros acima do definido, o circuito é aberto, e para de direcionar requisições ao serviço que  			 esta apresentando problemas, dando a ele, chance de se recuperar e oferecendo oportunidade ao chamador de realizar um tratamento personalizado a indicação de problemas com o serviço externo. 
 	 
 
 ## Detalhes do Código
