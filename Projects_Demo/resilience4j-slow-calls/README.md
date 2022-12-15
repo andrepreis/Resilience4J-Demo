@@ -36,7 +36,7 @@ A arquitetura acima demonstra um modelo  básico de aplicação onde iremos simu
 
 ## Executando o Exemplo
 
-Para executar nosso exemplo, você precisará montar e executar as seguintes aplicações:
+Para executar o exemplo, você precisará compilar e empacotar as seguintes aplicações:
 	
 * *superapi* : Aplicação que contem os serviços fake que simulam servições externos que tem sua chamada encapsulada dentro do circuit breaker.
 * *resilience4j-slow-calls* : Aplicação que implementa o *circuit breaker* que controla lentidão na chamada ao serviço externo *Service2*.
