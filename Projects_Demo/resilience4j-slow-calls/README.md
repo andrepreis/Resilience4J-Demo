@@ -105,6 +105,7 @@ Para encapsular a chamada para um serviço externo, basta colocar a anotação *
 > @CircuitBreaker(name = "circuitSlowMonitor", fallbackMethod = "fallBack")
 
 O parâmetro *name* se refere ao nome do *circuit breaker*.
+
 O parâmetro *fallbackMethod* se refere ao método que será chamado quando o *circuit breaker* estiver com status aberto. 
 
 
