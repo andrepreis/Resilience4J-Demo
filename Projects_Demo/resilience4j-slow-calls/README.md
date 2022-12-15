@@ -107,6 +107,8 @@ Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
 
 Para encapsular a chamada para um serviço externo, basta colocar a anotação *@CircuitBreaker* no método que faz a chamada para o serviço externo:
 
+[Classe que implementa o circuit breaker](https://github.com/andrepreis/Resilience4J-Demo/blob/main/Projects_Demo/resilience4j-slow-calls/src/main/java/br/com/andrepreis/resilience4jslowcalls/controller/CircuitBrakerController.java)
+
 > @CircuitBreaker(name = "circuitSlowMonitor", fallbackMethod = "fallBack")
 
 O parâmetro *name* se refere ao nome do *circuit breaker*.
