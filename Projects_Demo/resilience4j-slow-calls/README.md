@@ -36,6 +36,11 @@ A arquitetura acima demonstra um modelo  básico de aplicação onde iremos simu
 
 ## Executando o Exemplo
 
+Primeiramente clone o repositório:
+
+> git clone https://github.com/andrepreis/Resilience4J-Demo.git
+
+
 Para executar o exemplo, você precisará compilar e empacotar as seguintes aplicações:
 	
 * *superapi* : Aplicação que contem os serviços fake que simulam servições externos que tem sua chamada encapsulada dentro do circuit breaker.
