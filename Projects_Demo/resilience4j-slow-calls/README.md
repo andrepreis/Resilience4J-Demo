@@ -14,7 +14,7 @@ Utilizando a biblioteca Resilience4j, essa funcionalidade pode ser facilmente ob
 * Esse comportamento de lentidão de *Service2* não deve afetar *Service1* .
 * Sempre que *Service1* perceber que 50% das chamadas estão demorando mais de 20 ms, ele não chamará *Service2* e retornará a resposta armazenada, por exemplo, em um cahce.
 
-Todas essas funcionalidades citadas acima, podem ser obtidas com o uso do padrão *Circuit Breaker*.
+Todas essas funcionalidades citadas acima, podem ser obtidas com o uso do padrão *Circuit Breaker*. 
 
 ## Código Fonte
 Abaixo, segue o exemplo implementado:
