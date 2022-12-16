@@ -96,7 +96,7 @@ Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 q
 Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, obviamente o número de erros de  *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. 
 Porque isso acontece?
 Isso ocorre porque definimos a seguinte condição em nosso *circuit breaker* :
-	* Sempre que o serviço monitorado apresentar um número de erros acima do definido, o circuito é aberto, e para de direcionar requisições ao serviço que  			 esta apresentando problemas, dando a ele, chance de se recuperar e oferecendo oportunidade ao chamador de realizar um tratamento personalizado a indicação de problemas com o serviço externo. 
+	* Sempre que o serviço monitorado apresentar um número de erros acima do definido, o circuito é aberto, e para de direcionar requisições ao serviço que  			está apresentando problemas, dando a ele, chance de se recuperar e oferecendo oportunidade ao chamador de realizar um tratamento personalizado na indicação de problemas com o serviço externo. 
 	 
 
 ## Detalhes do Código
