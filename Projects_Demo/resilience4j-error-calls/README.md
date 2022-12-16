@@ -29,9 +29,8 @@ A arquitetura acima demonstra um modelo  básico de aplicação onde iremos simu
 
 1. Varias threads são disparadas via JMeter ou navegador tendo como alvo *Service1*.
 2. *Service1* esta encapsulando dentro de um *circuit breaker* todas as chamadas que são realizadas para o serviço externo *Service2* . 
-3. Este *circuit breaker* monitora todas as chamadas para *Service2* originadas a partir de *Service1*.
-4. Sempre que *Service2* responder de forma adequada, *Service1* retorna a resposta para o solicitante e atualiza o cache da aplicação.
-5. Sempre que acontecer grande ocorrência de erros na chamada de *Service2*, o circuito será aberto e *Service1* retornará o valor mais atual existente no cache.
+3. Sempre que *Service2* responder de forma adequada, *Service1* retorna a resposta para o solicitante e atualiza o cache da aplicação.
+4. Sempre que acontecer grande ocorrência de erros na chamada de *Service2*, o circuito será aberto e *Service1* retornará o valor mais atual existente no cache.
 
 
 ## Executando o Exemplo
