@@ -86,12 +86,12 @@ Se preferir executar os exemplos via linha de comando, siga os passos de 1 a 5 q
 7. Com o sript de testes devidamente importado no Jmeter, vamos verificar dois cenários:
 
 	1. Iremos chamar  diretamente *Service2* e observar o comportamento quando ocorrer lentidão durante sua chamada;
-	![Chamada direta sem circuit breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)		
+	![Chamada direta sem circuit breaker](./img/Slow_Calls_Direta.png)	
 	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 1278ms por requisição.
 	
 	2. Iremos chamar *Service1* e este por sua vez, fara chamadas para *Service2*. Detalhe, a chamada para *Service2* esta encapsulada dentro por um *circuit breaker*.
-	![Chamada direta com Circuit Breaker](./img/R4J-Slow-Calls-TelaSlowCalls2.png)
-	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento de 100ms por requisição.
+	![Chamada direta com Circuit Breaker](./img/Slow_Calls_cb.png)
+	Disparamos 2 ciclos de 20 requisições dentro de um intervalo de 2 segundos e obtemos um tempo médio de processamento menor que 100ms por requisição.
 	
 8. Após a execução dos dois cenários, iremos  comparar o resultado das duas execuções:
 Note que quando encapsulamos as chamadas para *Service2* dentro do *circuit breaker*, o tempo médio de resposta de *Service2* foi significativamente menor quando comparado com a chamada direta sem o *circuit breaker*. 
