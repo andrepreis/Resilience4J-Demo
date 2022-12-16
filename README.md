@@ -6,7 +6,7 @@ Em ambientes distribuídos, as chamadas para serviços e recursos externos podem
 
 No entanto, pode também haver situações em que as falhas se devem a eventos imprevistos, como erros (HTTP 5xx ou 4xx) e podem demorar muito mais tempo para serem corrigidas. Estas falhas podem variar em termos de gravidade, de uma perda parcial de conectividade à uma falha total de um serviço. 
 
-Nada disso é aceitável e precisamos de uma solução que impeça que problemas pontuais, em portes específicas de nosso sistema, se propaguem e causem a queda de todo o sistema.
+Nada disso é aceitável e precisamos de uma solução que impeça que problemas pontuais, em partes específicas de nosso sistema, se propaguem e causem a queda de todo o sistema.
 
 Existem alguns padrões de projeto que ajudam a mitigar estes problemas, por exemplo, o padrão *circuit breaker*. Neste repositório você encontra alguns exemplos de implementação do padrão *circuit breaker* utilizando a biblioteca Resilience4j em um projeto Java / Maven / SpringBoot.
 
