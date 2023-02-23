@@ -30,7 +30,7 @@ public class R4jRetry {
     
     @GetMapping("/retryCall")
     @Retry(name = "testRetry", fallbackMethod = "fallback")
-    public ResponseEntity<String> greeting(@RequestParam(value = "name", defaultValue = "greetingRetry") String name) {
+    public ResponseEntity<String> callSomeExternalApi(@RequestParam(value = "name", defaultValue = "testeRetry") String name) {
         
     	logger.info("Efetuando chamada a um serviço externo");
         
