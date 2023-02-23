@@ -30,7 +30,7 @@ Um ponto importante no exemplo acima é que ao tornar nossa aplicação resilien
 * Tratamento de falhas não transitórias, exemplo: exceções internas causadas por erros de lógica ou codificação.
 * Tratamento de problemas de escalabilidade do sistema.
 
-##Arquitetura
+## Arquitetura
 
 A ideia básica da arquitetura por trás do padrão retry é muito simples. Basicamente envolvemos a chamada da função protegida em um objeto retry que monitora as falhas. Uma vez que falhas transientes começarem a ocorrer, a aplicação poderá lidar com a falha usando uma das seguintes estratégias:
 
