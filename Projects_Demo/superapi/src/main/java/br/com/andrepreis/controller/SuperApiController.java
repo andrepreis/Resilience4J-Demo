@@ -100,5 +100,32 @@ public class SuperApiController {
 	
 		return new ResponseEntity<String>(returnMessage,HttpStatus.OK);		
 	}
+	
+	/**
+	 * Simula chamada a um serviço externo que apresenta erros transientes
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getExternaServiceResponse", method = RequestMethod.GET)
+	@ResponseBody	
+	public ResponseEntity<String> getExternaServiceResponse(@RequestParam(value = "name", defaultValue = "getExternaServiceResponse") String name)throws Exception{
+		
+		String returnMessage="Sucess";
+		
+		try {
+			
+			returnMessage = service.geraErrosSimulados(name);
+			logger.info(returnMessage);
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			returnMessage="Error";
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<String>(returnMessage,HttpStatus.OK);
+	}
+	
 
 }

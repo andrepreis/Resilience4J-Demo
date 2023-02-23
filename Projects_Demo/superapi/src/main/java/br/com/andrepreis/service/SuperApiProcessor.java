@@ -111,10 +111,8 @@ public class SuperApiProcessor {
 			logger.info("Grande Atraso! [Total Requições:"+ControlVars.sucessRequestsNumber+" ,Total de erros:"+ControlVars.errorRequestsNumber+"]");
 			return true;
 		}		
-		return false;		
-		
+		return false;			
 	}
-	
 	
 
 

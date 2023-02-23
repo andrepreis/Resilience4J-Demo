@@ -20,8 +20,7 @@ import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 @CrossOrigin
 @RequestMapping("/v1")
 public class R4jRateLimiter {
-	
-	private String cache = null;
+
 	
 	public static final Logger logger = LoggerFactory.getLogger(R4jRateLimiter.class);
 	public static String SUPERAPI = "http://localhost:9090/superapi/v1/getRateLimiterCalls?name=";

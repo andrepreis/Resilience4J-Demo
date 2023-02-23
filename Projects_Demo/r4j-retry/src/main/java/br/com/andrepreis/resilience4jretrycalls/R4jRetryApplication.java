@@ -1,4 +1,4 @@
-package br.com.andrepreis.resilience4jslowcalls;
+package br.com.andrepreis.resilience4jretrycalls;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
